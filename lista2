@@ -1,0 +1,75 @@
+ex1
+ 
+SELECT
+   pedidos.pedido_id,
+   pedidos.data_pedido,
+   pedidos.total,
+   pedidos.status,
+   clientes.nome AS cliente_nome,
+   clientes.email AS cliente_email
+FROM
+   pedidos
+INNER JOIN
+   clientes ON pedidos.cliente_id = clientes.cliente_id;
+ 
+ 
+
+ex2
+ 
+SELECT
+   clientes.cliente_id,
+   clientes.nome,
+   clientes.email,
+   interacoes.interacao_id,
+   interacoes.tipo_interacao,
+   interacoes.data_interacao
+FROM
+   clientes
+LEFT JOIN
+   interacoes ON clientes.cliente_id = interacoes.cliente_id;
+ 
+ 
+
+ex3
+ 
+SELECT
+   orcamentos.orcamento_id,
+   orcamentos.descricao AS orcamento_descricao,
+   orcamentos.valor AS orcamento_valor,
+   transacoes.transacao_id,
+   transacoes.valor AS transacao_valor,
+   transacoes.descricao AS transacao_descricao
+FROM
+   transacoes
+RIGHT JOIN
+   orcamentos ON transacoes.orcamento_id = orcamentos.orcamento_id;
+ 
+ 
+ex4
+ 
+SELECT
+   pacientes.paciente_id,
+   pacientes.nome,
+   COUNT(consultas.consulta_id) AS numero_consultas
+FROM
+   pacientes
+LEFT JOIN
+   consultas ON pacientes.paciente_id = consultas.paciente_id
+GROUP BY
+   pacientes.paciente_id, pacientes.nome;
+ 
+ 
+ 
+ex5
+ 
+SELECT
+   movimentacao_estoque.movimentacao_id,
+   movimentacao_estoque.produto_id,
+   produtos.nome AS produto_nome,
+   movimentacao_estoque.quantidade,
+   movimentacao_estoque.tipo_movimentacao,
+   movimentacao_estoque.data_movimentacao
+FROM
+   movimentacao_estoque
+INNER JOIN
+   produtos ON movimentacao_estoque.produto_id = produtos.produto_id
